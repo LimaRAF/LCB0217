@@ -1,95 +1,48 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# LCB0217 <img src="man/figures/compendium-sticker.png" align="right" style="float:right; height:120px;"/>
+# Roteiros de aula - LCB0217
 
-<!-- badges: start -->
+## Introdução
 
-[![License: GPL (&gt;=
-2)](https://img.shields.io/badge/License-GPL%20%28%3E%3D%202%29-blue.svg)](https://choosealicense.com/licenses/gpl-2.0/)
-<!-- badges: end -->
+Este repositório contém os dados e roteiros de aulas práticas prática da
+disciplina de Ecologia de Comunidades (LCB-0217) do curso de Ciências
+Biológicas da ESALQ/USP de Piracicaba, SP, Brasil.
 
-<p align="left">
-• <a href="#overview">Overview</a><br> •
-<a href="#features">Features</a><br> •
-<a href="#content">Content</a><br> •
-<a href="#installation">Installation</a><br> •
-<a href="#usage">Usage</a><br> • <a href="#citation">Citation</a><br> •
-<a href="#contributing">Contributing</a><br> •
-<a href="#acknowledgments">Acknowledgments</a><br> •
-<a href="#references">References</a>
-</p>
+O objetivo aqui é introduzir de maneira prática o uso de uma linguagem
+de programação (no caso o R) para a análise de dados em ecologia de
+comunidades.
 
-## Overview
+## Roteiros disponíveis
 
-This research compendium… **{{ DESCRIBE YOUR PROJECT }}**
+Os roteiros atualmente disponíveis e os seus objetivos principais são:
 
-## Features
+- [`manejo_dados_parcelas.R`](https://github.com/LimaRAF/LCB0217/tree/master/roteiros/manejo_dados_parcelas.R):
+  - instalar programas
+  - ler arquivos de dados
+  - inspecionar e editar dados
+  - verificar grafia e nomenclatura de nomes de espécies
+  - descrever a estrutura, riqueza e diversidade da floresta (por
+    parcela e geral)
+  - visualizar os dados por tipo de ambiente
+  - slavar os resultados e figuras
 
-The main purpose of this compendium is to… **{{ DESCRIBE THE MAIN
-FEATURES }}**
+## Organização
 
-## Content
+Este repositório esta organizado da seguinte maneira:
 
-This repository is structured as follow:
+- [`roteiros`/\`](https://github.com/LimaRAF/LCB0217/tree/master/roteiros):
+  para armazenar os roterios das aulas práticas
 
--   [`DESCRIPTION`](https://github.com/LimaRAF/LCB0217/tree/master/DESCRIPTION):
-    contains project metadata (authors, date, dependencies, etc.)
+- [`dados`/\`](https://github.com/LimaRAF/LCB0217/tree/master/dados):
+  para armazenar os dados usados como input nos roterios e os resultados
+  gerados pelos roteiros
 
--   [`make.R`](https://github.com/LimaRAF/LCB0217/tree/master/make.R):
-    main R script to run the entire project
+- [`figuras`/\`](https://github.com/LimaRAF/LCB0217/tree/master/figuras):
+  para armazenar as figuras geradas pelos roteiros
 
--   [`R/`](https://github.com/LimaRAF/LCB0217/tree/master/R): contains R
-    functions developed especially for this project
+- [`R/`](https://github.com/LimaRAF/LCB0217/tree/master/R): para
+  armazenar as funções desenvolvidas especialmente para o repositório
 
--   **{{ LIST ADDITIONAL FILES/FOLDER }}**
-
-## Installation
-
-To install this compendium:
-
--   [Fork](https://docs.github.com/en/get-started/quickstart/contributing-to-projects)
-    this repository using the GitHub interface.
--   [Clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    your fork using `git clone fork-url` (replace `fork-url` by the URL
-    of your fork). Alternatively, open [RStudio
-    IDE](https://posit.co/products/open-source/rstudio/) and create a
-    New Project from Version Control.
-
-## Usage
-
-Launch the
-[`make.R`](https://github.com/LimaRAF/LCB0217/tree/master/make.R) file
-with:
-
-    source("make.R")
-
-**Notes**
-
--   All required packages listed in the `DESCRIPTION` file will be
-    installed (if necessary)
--   All required packages and R functions will be loaded
--   Some analyses listed in the `make.R` might take time
-
-## Citation
-
-Please use the following citation:
-
-> **{{ ADD A CITATION }}**
-
-## Contributing
-
-All types of contributions are encouraged and valued. For more
-information, check out our [Contributor
-Guidelines](https://github.com/LimaRAF/LCB0217/blob/main/CONTRIBUTING.md).
-
-Please note that this project is released with a [Contributor Code of
-Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html).
-By contributing to this project, you agree to abide by its terms.
-
-## Acknowledgments
-
-**{{ OPTIONAL SECTION }}**
-
-## References
-
-**{{ OPTIONAL SECTION }}**
+- [`outputs/`](https://github.com/LimaRAF/LCB0217/tree/master/R): para
+  os resultados das análises dos dados dos roteiros
