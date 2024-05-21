@@ -25,9 +25,20 @@ if (!requireNamespace("BIOMASS")) install.packages("BIOMASS")
 
 # LENDO OS DADOS ----------------------------------------------------
 ## Definindo o nome do arquivo e o caminho certo até os dados
-nome_arquivo <- "dados_piracaia.xlsx"
 minha_pasta <- "dados/dados-brutos"
+nome_arquivo <- "dados_piracaia.xlsx"
 meu_caminho <- file.path(minha_pasta, nome_arquivo)
+
+## Verificando se a pasta e o arquivo estão no seu computador. Se não,
+# a pasta é criada e o arquivo é baixado do repositório online
+if (!dir.exists(minha_pasta))
+  dir.create(minha_pasta, recursive = TRUE)
+
+if (!nome_arquivo %in% list.files(minha_pasta)) {
+  url <- "https://github.com/LimaRAF/LCB0217/tree/master/dados/dados-brutos"
+  download.file(paste0(url, "/", nome_arquivo),
+                destfile = meu_caminho)
+}
 
 ## Lendo o arquivo
 parcelas <- as.data.frame(readxl::read_excel(meu_caminho, sheet = 1))
@@ -35,6 +46,7 @@ head(parcelas, n = 3)
 
 descricao <- as.data.frame(readxl::read_excel(meu_caminho, sheet = 2))
 head(descricao, n = 3)
+
 
 
 # INSPECIONANDO/EDITANDO OS DADOS ---------------------------------
@@ -288,13 +300,18 @@ totais <- data.frame("1-24", Ntotal, AB, Vol, AGB, DA, DoA, Vol_ha,
 names(totais) <- names(resultados)
 resultados_finais <- rbind.data.frame(resultados, totais)
 
-## Definindo o nome do arquivo e o caminho certo até os dados
+## Definindo o nome do arquivo e o caminho certo para salvar os dados
 nome_arquivo <- "resultados.xlsx"
 minha_pasta <- "dados/dados-processados"
 meu_caminho <- file.path(minha_pasta, nome_arquivo)
 
+## Verificando se a pasta existe. Se não, a pasta é criada.
+if (!dir.exists(minha_pasta))
+  dir.create(minha_pasta, recursive = TRUE)
+
 ## Salvando
 writexl::write_xlsx(resultados_finais, meu_caminho, format_headers = FALSE)
+
 
 # BONUS: COMPARANDO AMBIENTES -------------------------------------
 
@@ -308,8 +325,17 @@ boxplot(AGB_mg ~ Ambiente, data = resultados1)
 boxplot(S ~ Ambiente, data = resultados1)
 boxplot(H ~ Ambiente, data = resultados1)
 
+## Definindo o nome do arquivo e o caminho certo para salvar a figura
+nome_arquivo <- "boxplot.jpg"
+minha_pasta <- "figuras/"
+meu_caminho <- file.path(minha_pasta, nome_arquivo)
+
+## Verificando se a pasta existe. Se não, a pasta é criada.
+if (!dir.exists(minha_pasta))
+  dir.create(minha_pasta)
+
 ## Salvando a figura
-dev.print(jpeg, file= "figuras/boxplot.jpg", 
+dev.print(jpeg, file = meu_caminho, 
           width = 1400, height = 1000, res = 200)
 
 ## Limpando a área de trabalho

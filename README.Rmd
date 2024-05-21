@@ -28,10 +28,23 @@ O objetivo aqui é introduzir de maneira prática o uso de uma linguagem
 de programação (no caso o R) para a análise de dados em ecologia de
 comunidades.
 
+<br/>
+
+## Roteiro de uso
+
+Para poder acompanhar os roteiros você deve:
+
+  * instalar o R em seu computador a partir [deste link](https://brieger.esalq.usp.br/CRAN/)
+  * abrir uma sessão do R em seu computador a partir [deste link](https://brieger.esalq.usp.br/CRAN/)
+  * descobrir em qual diretório a sua sessão está aberta usando o comando `getwd()` 
+  * baixar o roteiro no mesmo diretório retornado pelo comando `getwd()` 
+
+<br/>
 
 ## Roteiros disponíveis
 
-Os roteiros atualmente disponíveis e os seus objetivos principais são:
+Os roteiros atualmente disponíveis e os seus objetivos principais
+estão listados abaixo. 
 
 - [`manejo_dados_parcelas.R`](https://github.com/LimaRAF/LCB0217/tree/master/roteiros/manejo_dados_parcelas.R):
   * instalar programas;
@@ -42,6 +55,7 @@ Os roteiros atualmente disponíveis e os seus objetivos principais são:
   * visualizar os dados por tipo de ambiente;
   * salvar os resultados e figuras.
 
+<br/>
 
 ## Organização
 
