@@ -22,6 +22,10 @@ if (!requireNamespace("vegan")) install.packages("vegan")
 
 if (!requireNamespace("BIOMASS")) install.packages("BIOMASS")
 
+if (!requireNamespace("readxl")) install.packages("readxl")
+
+if (!requireNamespace("writexl")) install.packages("writexl")
+
 
 # LENDO OS DADOS ----------------------------------------------------
 ## Definindo o nome do arquivo e o caminho certo até os dados
@@ -71,7 +75,7 @@ paps_para_substituir <- parcelas$PAP1 > 1000
 parcelas$PAP1[paps_para_substituir] <- 
   parcelas$PAP1[paps_para_substituir]/1000
 
-## Qual A menor e maior altura? Tudo ok? Valores em metros
+## Qual a menor e maior altura? Tudo ok? Valores em metros
 range(parcelas$AlturaTotal_m)
 
 
@@ -202,7 +206,8 @@ resultados <- aggregate(cbind(N, AB_total_m2, Volume_m3, AGB_mg) ~ Parcela,
                         data = parcelas, FUN = sum, na.rm = TRUE)
 
 ## Resultados da floresta: altura total média
-resultados$Altura_media_m <- aggregate(cbind(AlturaTotal_m) ~ Parcela,
+resultados$Altura_media_m <- aggregate(parcelas$AlturaTotal_m,
+                                       list(parcelas$Parcela),
                         data = parcelas, FUN = mean, na.rm = TRUE)$x
 
 ## Resultados da floresta por hectare: densidade, área basal, volume e biomassa
@@ -239,7 +244,7 @@ resultados$alpha <- vegan::fisher.alpha(contagem_por_parcela)
 ### rarefação da riqueza para numeros menores de indivíduos por parcela (p.ex.: 5, 10 e 15)
 ### NOTA: valores de N_rar acima do mínimo das parcelas retornam os resultados com um aviso!
 N_rar <- c(5, 10, 15)
-S_rar <- as.data.frame(rarefy(contagem_por_parcela, N_rar))
+S_rar <- as.data.frame(vegan::rarefy(contagem_por_parcela, N_rar))
 names(S_rar) <- paste0("S_", names(S_rar))
 resultados <- cbind.data.frame(resultados, S_rar)
 head(resultados, 3)
@@ -284,18 +289,18 @@ D <- vegan::diversity(contagem, index = "simpson")
 
 ### rarefação da riqueza para numeros menores de indivíduos (p.ex.: 100, 250 e 500)
 N_rar <- c(50, 100, 250, 500, 750)
-(S_rarefeito <- rarefy(contagem, N_rar))
+(S_rarefeito <- vegan::rarefy(contagem, N_rar))
 
 ### visualizando a curva de rarefação
 valores_N <- seq(0,875,5)
-plot(rarefy(contagem, valores_N)[1,] ~ valores_N)
+plot(vegan::rarefy(contagem, valores_N)[1,] ~ valores_N)
 abline(h = S, lty = 2)
 
 
 # SALVANDO OS RESULTADOS ------------------------------------------
 
 ## Adicionando os totais à tabela de resultados por parcela
-totais <- data.frame("1-24", Ntotal, AB, Vol, AGB, DA, DoA, Vol_ha,
+totais <- data.frame("1-24", Ntotal, AB, Vol, AGB, NA, DA, DoA, Vol_ha,
                      AGB_ha, S, H, D, invD, J, alpha, NA, NA, NA)
 names(totais) <- names(resultados)
 resultados_finais <- rbind.data.frame(resultados, totais)
