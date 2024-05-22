@@ -11,6 +11,10 @@
 #' manualmente para auxiliar na atividade prática (não use os dados em
 #' outro contexto)
 #' 
+#' Os dados se referem a 24 parcelas de 10 x 20 m, estabelecidas em
+#' ambiente pouco e muito degradado, nos quais todas as árvores com
+#' PAP >15cm foram medidas e identificadas.
+#' 
 #'
 # INSTALANDO OS PACOTES NECESSÁRIOS ---------------------------------
 
@@ -267,6 +271,9 @@ AGB <- sum(parcelas$AGB_mg)
 Vol <- sum(parcelas$Volume_m3)
 (Vol_ha <- Vol/esforco)
 
+## Calculando a altura média da floresta (m)
+Altura_media_m <- mean(parcelas$AlturaTotal_m)
+
 ## Índices de riqueza, diversidade e equabilidade
 
 ### preparando os dados
@@ -300,7 +307,7 @@ abline(h = S, lty = 2)
 # SALVANDO OS RESULTADOS ------------------------------------------
 
 ## Adicionando os totais à tabela de resultados por parcela
-totais <- data.frame("1-24", Ntotal, AB, Vol, AGB, NA, DA, DoA, Vol_ha,
+totais <- data.frame("1-24", Ntotal, AB, Vol, AGB, Altura_media_m, DA, DoA, Vol_ha,
                      AGB_ha, S, H, D, invD, J, alpha, NA, NA, NA)
 names(totais) <- names(resultados)
 resultados_finais <- rbind.data.frame(resultados, totais)
